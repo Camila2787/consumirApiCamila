@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <link rel="stylesheet" href="/css/stylesCompras.css">
+   <link rel="stylesheet" href="/css/styleListarCompras.css">
+   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+   
+
+
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+  </style>
+
+    <title>Document</title>
+</head>
+<header class="border-bottom">
+    <div class="container1">
+      <div
+        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      >
+        <a
+          href="/"
+          class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none"
+        >
+          <svg
+            class="bi me-2"
+            width="40"
+            height="32"
+            role="img"
+            aria-label="Bootstrap"
+          ><use xlink:href="#bootstrap" /></svg>
+        </a>
+  
+        <ul
+          class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
+        >
+        <!-- El tittle es para poner dinamico el nombre de donde nos encontramos -->
+          <li><h1 class="h2">Compras</h1></li>
+        </ul>
+  
+        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+          <input
+            type="search"
+            class="form-control"
+            placeholder="Search..."
+            aria-label="Search"
+          />
+        </form>
+        <div class="dropdown text-end">
+          <a
+            href="#"
+            class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+          </a>
+          <ul class="dropdown-menu text-small" style =>
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <body onload="editarCompra()" >
+
+<!--FORMULARIO-->
+<div class="container">
+    <form class="formularioInt">
+        <div class="row">
+  <!-- Encabezado de Compra -->
+  <h1 class="textoh1">Registrar una compra</h1>
+
+  <!-- Insumos -->
+  <div class="col-md-4">
+    <div class="mb-4 form-group">
+        <label for="nombreInsumo" class="form-label fontTtitle">Nombre del insumo: <span class="text-danger">*</span></label>
+        <input type="text" class="form-control"  id="nombreInsumo" aria-describedby="nombreHelp" placeholder="Ingrese nombre del insumo"oninput="validarNombreInsumo()">
+        <small id="nombreHelp" class = "form-text text-muted"><br></small>
+        <div id="mensajeErrorNombreInsumo" class="mensajeErrorNombreInsumo"></div>
+    </div>
+          <!-- Fecha -->
+          <div class="col-md-4">
+              <div class="mb-4 form-group">
+                  <label for="fecha" class="form-label fontTtitle">Fecha <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="fecha" aria-describedby="fechaHelp" oninput="validarFecha()">
+                  <small id="fechaHelp" class="form-text text-muted"><br></small>
+              </div>
+              <div id="mensajeErrorFecha" class="mensajeErrorFecha"></div>
+          </div>
+
+          <!-- Proveedor -->
+          <div class="col-md-4">
+              <div class="mb-4 form-group">
+                  <label for="Proveedor">Proveedor <span class="text-danger">*</span></label>
+                  <select id="Proveedor" class="form-control">
+                      <option selected></option>
+                      <option value="BarahClothes">BarahClothes</option>
+                      <option value="Distribuidora SAS">Distribuidora SAS</option>
+                      <option value="Gildan">Gildan</option>
+                      <option value="Disatex">Disatex</option>
+                      <option value="Insutex">Insutex</option>
+                  </select>
+                  <small id="proveedorHelp" class="form-text text-muted"><br></small>
+               </div>
+          </div>
+
+          <!-- Recibo -->
+          <div class="col-md-4">
+              <div class="mb-4 form-group">
+                  <label for="numRecibo">Num Recibo <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="numRecibo" aria-describedby="reciboHelp" oninput="validarNumRecibo()">
+                  <small id="reciboHelp" class="form-text text-muted"><br></small>
+              </div>
+              <div id="mensajeErrorRecibo" class="mensajeErrorRecibo"></div>
+          </div>
+      </div>
+
+      <div class="row">
+          <!-- $IVA -->
+          <div class="col-md-4">
+              <div class="mb-4 form-group">
+                  <label for="IVA">$IVA <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control" id="IVA" aria-describedby="ivaHelp" placeholder="ingrese el porcentaje de iva"oninput="validarIVA()">
+                  <small id="ivaHelp" class="form-text text-muted"><br></small>
+              </div>
+              <div id="mensajeErrorIVA" class="mensajeErrorIVA"></div>
+          </div>
+
+
+          <!-- Total -->
+          <div class="col-md-4">
+              <div class="mb-4 form-group">
+                  <label for="total">Total <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control"  id="total" area-describedby="totalHelp" oninput="validarTotal()">
+                  <small id="totalHelp" class="form-text text-muted"><br></small>
+              </div>
+              <div id="mensajeErrorTotal" class="mensajeErrorTotal"></div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="mb-4 form-group">
+                <label for="cantidad">Cantidad <span class="text-danger">*</span></label>
+                <input type="number" class="form-control"  id="cantidad" area-describedby="cantidadHelp">
+                <small id="cantidadHelp" class="form-text text-muted"><br></small>
+            </div>
+            <div id="mensajeErrorCantidadI" class="mensajeErrorCantidadI"></div>
+          <button type="button" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+          <button type="button" class="btn btn-danger" id="btnCancelar">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="btnActualizar" style.display = 'none'>Actualizar</button>
+
+      </div>
+
+
+          </div>
+          
+      </div>
+  </form>
+
+
+    
+
+   <main class="mb-5">
+
+    <div class="search">
+        
+        <form class="d-flex" role="search">
+             <input class="form-control me-2 campo-search" type="search" placeholder="Buscar" aria-label="Search">    
+              <!-- Para modificar el tamaño del logo icono ".icono-search"  y para modificar la orientacion de este ".boton-search" -->
+              <button class="btn btn-outline-secondary boton-search" type="submit"><img src="" alt="search"  class="icono-search"></button>
+        </form>
+
+
+    </div>
+
+
+    <div class="">
+      <a href="">
+          <button type="button" class="btn btn-light more">+ Agregar</button>
+      </a>
+  </div>
+
+</main>
+
+<div class="container">
+
+        <div class="container2"> <!--Contenedor tipo encabezado, para el titulo-->
+
+                <h2 class="fontTtitle mt-3">Listado Compras</h2>
+                
+                <table class="table table-orientacion" id="tablaCompras">
+                    <thead>
+                      <tr>
+                        <td scope="col" class="camposListar">NombreInsumo</td>
+                        <td scope="col" class="camposListar">Cantidad</td>
+                        <td scope="col" class="camposListar">Proveedor</td>
+                        <td scope="col" class="text-center camposListar">operaciones</td>
+
+                      </tr>
+                    </thead>
+                    <tbody id="contenido">
+
+                    </tbody>
+                </table>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  <script src="/js/funciones.js"></script>
+  <script src="/js/validaciones.js"></script>
+</body>
+
+</html>

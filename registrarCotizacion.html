@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styleCotizacion.css">
+    <link rel="stylesheet" href="/css/styleListar.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    </style>
+    <title>Document</title>
+</head>
+
+<body onload="editarCotizacion()">
+
+    <!-- FORMULARIO -->
+    <div class="container">
+        <form class="formularioInt">
+            <h1 class="textoh1">Registrar una cotización</h1>
+
+            <!-- Información de Cotización -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label for="NoCotizacion" class="form-label fontTtitle">No Cotización: <span
+                            class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="NoCotizacion" aria-describedby="noCotizacionHelp"
+                        placeholder="Ingrese número de cotizacion" oninput="validarNoCotizacion()">
+                    <small id="noCotizacionHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorNoCotizacion" class="mensajeErrorNoCotizacion"></div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label for="formaPago" class="form-label fontTtitle">Forma de pago: <span
+                            class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="formaPago" aria-describedby="formaPagoHelp"
+                        oninput="validarFormaPago()">
+                    <small id="formaPagoHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorFormaPago" class="mensajeErrorFormaPago"></div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label for="ordenPedido" class="form-label fontTtitle">Orden de pedido: <span
+                            class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="ordenPedido" aria-describedby="ordenPedidoHelp"
+                        oninput="validarOrdenPedido()">
+                    <small id="ordenPedidoHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorOrdenPedido" class="mensajeErrorOrdenPedido"></div>
+                </div>
+            </div>
+
+            <!-- Información del Cliente -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label for="nombreRazonSocial">Nombre o razón social:<span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="nombreRazonSocial"
+                        aria-describedby="nombreRazonSocialHelp" oninput="validarNombreRazonSocial()">
+                    <small id="nombreRazonSocialHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorRazonSocial" class="mensajeErrorRazonSocial"></div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label for="nitDocumento">Nit o documento: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="nitDocumento"
+                        aria-describedby="nitDocumentoHelp" placeholder="ingrese el nit/documento"
+                        oninput="validarNitDocumento()">
+                    <small id="nitDocumentoHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorNitDocumento" class="mensajeErrorNitDocumento"></div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label for="telefono">Teléfono: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="telefono" area-describedby="telefonoHelp"
+                        oninput="validarTelefono()">
+                    <small id="telefonoHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorTelefono" class="mensajeErrorTelefono"></div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label for="direccion">Dirección: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="direccion" area-describedby="direcciónHelp"
+                        oninput="validarDireccion()">
+                    <small id="direccionHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorDireccion" class="mensajeErrorDireccion"></div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label for="correo">Correo electrónico: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="correo" area-describedby="correoHelp"
+                        oninput="validarCorreo()">
+                    <small id="correoHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorCorreo" class="mensajeErrorCorreo"></div>
+                </div>
+            </div>
+
+            <!-- Información del Producto -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <label for="nombreProducto">Nombre del producto: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="nombreProducto"
+                        area-describedby="nombreProductoHelp" oninput="validarNombreProducto()">
+                    <small id="nombreProductoHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorNombreProducto" class="mensajeErrorNombreProducto"></div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <label for="cantidadProducto">Cantidad: <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="cantidadProducto"
+                        area-describedby="cantidadProductoHelp" oninput="validarCantidadProducto()">
+                    <small id="cantidadProductoHelp" class="form-text text-muted"><br></small>
+                    <div id="mensajeErrorCantidadProducto" class="mensajeErrorCantidadProducto"></div>
+                </div>
+            </div>
+
+            <!-- Botones -->
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <button type="button" class="btn btn-primary" id="btnRegistrar">Registrar</button>
+                    <button type="button" class="btn btn-danger" id="btnCancelar">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnActualizar" style.display='none'>Actualizar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <main>
+
+        <div class="search">
+            
+            <form class="d-flex" role="search">
+                 <input class="form-control me-2 campo-search" type="search" placeholder="Buscar" aria-label="Search">    
+                  <!-- Para modificar el tamaño del logo icono ".icono-search"  y para modificar la orientacion de este ".boton-search" -->
+                  <button class="btn btn-outline-secondary boton-search" type="submit"><img src="/assets/img/search.ico" alt="search"  class="icono-search"></button>
+            </form>
+
+
+        </div>
+        <div class="">
+          <a href="/registrarCotizacion.html">
+              <button type="button" class="btn btn-light more">+ Agregar</button>
+          </a>
+      </div>
+
+ 
+    <div class="container">
+
+            <div class="container2"> <!--Contenedor tipo encabezado, para el titulo-->
+
+                    <h2 class="fontTtitle mt-3">Listado Cotización</h2>
+
+                    <table class="table table-orientacion" id="tablaCotizacion">
+                        <thead>
+                          <tr>
+                            <td scope="col" class="camposListar">Nombre Producto</td>
+                            <td scope="col" class="camposListar">Cantidad</td>
+                            <td scope="col" class="camposListar">nit/documento</td>
+                            <td scope="col" class="camposListar">Forma de pago</td>
+                            <td scope="col" class="text-center camposListar">operaciones</td>
+
+                          </tr>
+                        </thead>
+                        <tbody id="contenido">
+
+                        </tbody>
+                    </table>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="/js/funcionesCotizacion.js"></script>
+    <script src="/js/validacionesCotizacion.js"></script>
+</body>
+
+</html>
