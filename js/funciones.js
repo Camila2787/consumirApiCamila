@@ -81,6 +81,7 @@ const registrarCompra= () => {
     const iva = document.getElementById('IVA').value
     const total = document.getElementById('total').value 
     const cantidad = document.getElementById('cantidad').value
+    const precioDolar = document.getElementById('precioDolar').value
 
     if(nombre.length == 0){
         document.getElementById('nombreHelp').innerHTML = 'Dato requerido'
@@ -105,6 +106,10 @@ const registrarCompra= () => {
     else if(cantidad == 0){
         document.getElementById('cantidadHelp').innerHTML = 'Dato requerido'
     }
+
+    else if(precioDolar == 0){
+        document.getElementById('precioDolarHelp').innerHTML = 'Dato requerido'
+    }
    
     else{
         let compra ={
@@ -114,7 +119,8 @@ const registrarCompra= () => {
             numRecibo: recibo,
             IVA: iva,
             total: total,
-            cantidad: cantidad
+            cantidad: cantidad,
+            precioDolar: precioDolar
         }
         //Fecth permite reaizar peticiones http a una url
         fetch(url, {
@@ -133,12 +139,14 @@ const registrarCompra= () => {
 
 const actualizarCompra = () => {
     const nombre = document.getElementById('nombreInsumo').value;
-    const fecha = document.getElementById('fecha').value;
-    const proveedor = document.getElementById('Proveedor').value;
-    const recibo = document.getElementById('numRecibo').value;
-    const iva = document.getElementById('IVA').value;
-    const total = document.getElementById('total').value;
-    const cantidad = document.getElementById('cantidad').value;
+    const fecha = document.getElementById('fecha').value
+    const proveedor = document.getElementById('Proveedor').value
+    const recibo = document.getElementById('numRecibo').value
+    const iva = document.getElementById('IVA').value
+    const total = document.getElementById('total').value 
+    const cantidad = document.getElementById('cantidad').value
+    const precioDolar = document.getElementById('precioDolar').value
+
 
     if (nombre.length == 0) {
         document.getElementById('nombreHelp').innerHTML = 'Dato requerido';
@@ -154,6 +162,8 @@ const actualizarCompra = () => {
         document.getElementById('totalHelp').innerHTML = 'Dato requerido';
     } else if (cantidad == 0) {
         document.getElementById('cantidadHelp').innerHTML = 'Dato requerido';
+    }  else if(precioDolar == 0){
+        document.getElementById('precioDolarHelp').innerHTML = 'Dato requerido'
     } else {
         let compra = {
             nombreInsumo: nombre,
@@ -162,7 +172,8 @@ const actualizarCompra = () => {
             numRecibo: recibo,
             IVA: iva,
             total: total,
-            cantidad: cantidad
+            cantidad: cantidad,
+            precioDolar: precioDolar
         }
 
         // Mostrar SweetAlert para confirmar la actualización
@@ -215,7 +226,9 @@ const editarCompra=() =>{
     document.getElementById('IVA').value =urlParams.get('IVA')
     document.getElementById('total').value =urlParams.get('total')
     document.getElementById('cantidad').value =urlParams.get('cantidad')
+    document.getElementById('precioDolar').value =urlParams.get('precioDolar')
     document.getElementById('btnActualizar').style.display = 'block';
+    
    
     verificarEditar();
     
@@ -245,6 +258,7 @@ const visualizarCompra=() =>{
     document.getElementById('IVA').value =urlParams.get('IVA')
     document.getElementById('total').value =urlParams.get('total')
     document.getElementById('cantidad').value =urlParams.get('cantidad')
+    document.getElementById('precioDolar').value =urlParams.get('precioDolar')
 }
 
 const visualizar=(objetoCompras) =>{
